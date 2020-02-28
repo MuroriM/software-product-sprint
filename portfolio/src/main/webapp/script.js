@@ -26,3 +26,35 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+// async function getGreetingAsyncAwait() {
+//   const response = await fetch('/data');
+//   const quote = await response.text();
+//   document.getElementById('greeting-container').innerText = quote;
+// }
+
+/*
+ * Fetches stats from the servers and adds them to the DOM.
+ */
+function getRandomSwahili() {
+  fetch('/data').then(response => response.json()).then((swaWords) => {
+    // stats is an object, not a string, so we have to
+    // reference its fields to create HTML content
+
+    const statsListElement = document.getElementById('list-container');
+    statsListElement.innerHTML = '';
+    statsListElement.appendChild(
+        createListElement(swaWords[0]));
+    statsListElement.appendChild(
+        createListElement(swaWords[1]));
+    statsListElement.appendChild(
+        createListElement(swaWords[2]));
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
