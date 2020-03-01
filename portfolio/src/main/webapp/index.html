@@ -6,18 +6,25 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getComments()">
     <div id="content">
-      <h1>My Portfolio</h1>
       <img src="images/mutethia.jpg" alt="Murori">
       <p>Hi, I'm Murori!</p>
       <p>I'm currently a junior studying Computer Science</p>
       <p>I'm a big fan of philosophy</p>
       <p>Click the button below to find a couple of phrases that I love</p>
       <button onclick="addRandomGreeting()">Guess who???</button>
-      <button onclick="getRandomSwahili()">Guess who 2???</button>
       <div id="greeting-container"></div>
       <ul id="list-container"></ul>
+      <button onclick="getRandomSwahili()">Get comments</button>
+      <form action="/index" method="POST">
+          <p>Comments:</p>
+          <input type="text" comment="what's on your mind?">
+          <br/><br/>
+
+          <input type="submit" />
+      </form>
+      <ul id="comment-container"></ul>
     </div>
   </body>
 </html>

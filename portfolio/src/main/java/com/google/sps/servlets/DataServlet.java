@@ -14,6 +14,7 @@
 
 package com.google.sps.servlets;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -23,36 +24,50 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+@WebServlet("/")
 public class DataServlet extends HttpServlet {
+    
+  private ArrayList<String> comments = new ArrayList<String>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // response.setContentType("text/html;");
-    // response.getWriter().println("Hello Murori!");
 
-    ArrayList<String> swahiliGreetings = new ArrayList<String>();
+    comments.add("Jambo");
+    comments.add("Miwani");
+    comments.add("Muwa");
 
-    swahiliGreetings.add("Jambo");
-    swahiliGreetings.add("Miwani");
-    swahiliGreetings.add("Muwa");
 
-    String json = convertToJsonUsingGson(swahiliGreetings);
-
-    
     // Send the JSON as the response
     response.setContentType("application/json;");
+    String json = new Gson().toJson(comments);
     response.getWriter().println(json);
   }
+  
 
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String text = getParameter(request, "text-input", "");
+
+    // Break the text into individual words.
+    String[] words = text.split("\\s*,\\s*");
+
+    comments.addAll(Arrays.asList(words));
+    
+    // Redirect back to the HTML page.
+    response.sendRedirect("/");
+  }
 
   /**
-   * Converts a ServerStats instance into a JSON string using the Gson library. Note: We first added
-   * the Gson library dependency to pom.xml.
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
    */
-  private String convertToJsonUsingGson(ArrayList<String> str) {
-    Gson gson = new Gson();
-    String json = gson.toJson(str);
-    return json;
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
 }
+
