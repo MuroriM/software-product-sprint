@@ -37,8 +37,8 @@
  * Fetches stats from the servers and adds them to the DOM.
  */
 function getComments() {
-    console.log(12);
-  fetch('/').then(response => response.json()).then((comments) => {
+    // console.log(12);
+  fetch('/get_comments').then(response => response.json()).then((comments) => {
     // stats is an object, not a string, so we have to
     // reference its fields to create HTML content
 

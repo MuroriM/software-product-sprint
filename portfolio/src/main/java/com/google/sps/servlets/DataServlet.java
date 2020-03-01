@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/")
+@WebServlet("/get_comments")
 public class DataServlet extends HttpServlet {
     
   private ArrayList<String> comments = new ArrayList<String>();
@@ -55,7 +55,7 @@ public class DataServlet extends HttpServlet {
     comments.addAll(Arrays.asList(words));
     
     // Redirect back to the HTML page.
-    response.sendRedirect("/");
+    response.sendRedirect("/index.html");
   }
 
   /**
