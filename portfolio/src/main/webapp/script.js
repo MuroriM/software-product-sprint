@@ -43,7 +43,7 @@ function getComments() {
 
     for (const idx in comments) {
         commentListElement.appendChild(
-        createListElement(comments[idx]));
+        createListElement(comments[idx].commentText));
     }
   });
 }
