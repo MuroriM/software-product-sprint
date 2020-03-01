@@ -15,13 +15,10 @@
       <p>Click the button below to find a couple of phrases that I love</p>
       <button onclick="addRandomGreeting()">Guess who???</button>
       <div id="greeting-container"></div>
-      <ul id="list-container"></ul>
-      <button onclick="getRandomSwahili()">Get comments</button>
       <form action="/get_comments" method="POST">
           <p>Comments:</p>
-          <input type="text" comment="what's on your mind?">
+          <input type="text" name="comment-box" comment="what's on your mind?">
           <br/><br/>
-
           <input type="submit" />
       </form>
       <ul id="comment-container"></ul>

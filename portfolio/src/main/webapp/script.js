@@ -15,38 +15,35 @@
 /**
  * Adds a random greeting to the page.
  */
-// function addRandomGreeting() {
-//   const greetings =
-//       ['Waaazaaa', 'Wait for it', 'What is you doing', 'Why are you running?'];
+function addRandomGreeting() {
+  const greetings =
+      ['Waaazaaa', 'Wait for it', 'What is you doing', 'Why are you running?'];
 
-//   // Pick a random greeting.
-//   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  // Pick a random greeting.
+  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
-//   // Add it to the page.
-//   const greetingContainer = document.getElementById('greeting-container');
-//   greetingContainer.innerText = greeting;
-// }
+  // Add it to the page.
+  const greetingContainer = document.getElementById('greeting-container');
+  greetingContainer.innerText = greeting;
+}
 
-// async function getGreetingAsyncAwait() {
-//   const response = await fetch('/data');
-//   const quote = await response.text();
-//   document.getElementById('greeting-container').innerText = quote;
-// }
+async function getGreetingAsyncAwait() {
+  const response = await fetch('/data');
+  const quote = await response.text();
+  document.getElementById('greeting-container').innerText = quote;
+}
 
 /*
  * Fetches stats from the servers and adds them to the DOM.
  */
 function getComments() {
-    // console.log(12);
   fetch('/get_comments').then(response => response.json()).then((comments) => {
-    // stats is an object, not a string, so we have to
-    // reference its fields to create HTML content
 
     const commentListElement = document.getElementById('comment-container');
 
-    for (const comment in comments) {
+    for (const idx in comments) {
         commentListElement.appendChild(
-        createListElement(comment));
+        createListElement(comments[idx]));
     }
   });
 }
