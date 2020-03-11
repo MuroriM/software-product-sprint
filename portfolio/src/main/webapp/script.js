@@ -39,21 +39,32 @@ async function getGreetingAsyncAwait() {
  */
 function checkLogin() {
   fetch('/login').then(response => response.json()).then((logged) => {
-      if (logged) {
-          console.log(logged);
-          getComments();
-      } else {
-          console.log(logged);
-          window.location.replace("ht");
-      }
 
+      console.log(logged);
+
+      if (logged[0] == 'true') {
+          document.getElementById("comment_form").style.display = "block";
+      } else {          
+          document.getElementById("comment_form").style.display = "none";
+      }
+      getComments();
+
+      var z = makeElement(logged[1]);
+      var y = makeElement(logged[2]);
+
+      const logElement = document.getElementById('login');
+      logElement.append(z);
+      logElement.append(y);
+
+  
   });
 }
 
-function goLogin() {
-  fetch('/gologin').then(response => response.json()).then((logged) => {
+function makeElement(text) {
+    var z = document.createElement('p'); // is a node
+    z.innerHTML = text;
 
-  });
+    return z;
 }
 
 /*

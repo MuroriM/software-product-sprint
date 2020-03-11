@@ -7,6 +7,7 @@
     <script src="script.js"></script>
   </head>
   <body onload="checkLogin()">
+    <div id="login"></div>
     <div id="content">
       <img src="images/mutethia.jpg" alt="Murori">
       <p>Hi, I'm Murori!</p>
@@ -15,7 +16,7 @@
       <p>Click the button below to find a couple of phrases that I love</p>
       <button onclick="addRandomGreeting()">Guess who???</button>
       <div id="greeting-container"></div>
-      <form action="/get_comments" method="POST">
+      <form action="/get_comments" id="comment_form" method="POST">
           <p>Comments:</p>
           <input type="text" name="comment-box" comment="what's on your mind?">
           <br/><br/>
