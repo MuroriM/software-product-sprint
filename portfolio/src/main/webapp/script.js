@@ -33,6 +33,29 @@ async function getGreetingAsyncAwait() {
   document.getElementById('greeting-container').innerText = quote;
 }
 
+
+/*
+ * Fetches stats from the servers and adds them to the DOM.
+ */
+function checkLogin() {
+  fetch('/login').then(response => response.json()).then((logged) => {
+      if (logged) {
+          console.log(logged);
+          getComments();
+      } else {
+          console.log(logged);
+          window.location.replace("ht");
+      }
+
+  });
+}
+
+function goLogin() {
+  fetch('/gologin').then(response => response.json()).then((logged) => {
+
+  });
+}
+
 /*
  * Fetches stats from the servers and adds them to the DOM.
  */
