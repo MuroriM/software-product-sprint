@@ -33,6 +33,40 @@ async function getGreetingAsyncAwait() {
   document.getElementById('greeting-container').innerText = quote;
 }
 
+
+/*
+ * Fetches stats from the servers and adds them to the DOM.
+ */
+function checkLogin() {
+  fetch('/login').then(response => response.json()).then((logged) => {
+
+      console.log(logged);
+
+      if (logged[0] == 'true') {
+          document.getElementById("comment_form").style.display = "block";
+      } else {          
+          document.getElementById("comment_form").style.display = "none";
+      }
+      getComments();
+
+      var z = makeElement(logged[1]);
+      var y = makeElement(logged[2]);
+
+      const logElement = document.getElementById('login');
+      logElement.append(z);
+      logElement.append(y);
+
+  
+  });
+}
+
+function makeElement(text) {
+    var z = document.createElement('p'); // is a node
+    z.innerHTML = text;
+
+    return z;
+}
+
 /*
  * Fetches stats from the servers and adds them to the DOM.
  */
