@@ -68,7 +68,7 @@ public class DataServlet extends HttpServlet {
 
     // Only logged-in users can post messages
     if (!userService.isUserLoggedIn()) {
-      response.sendRedirect("/shoutbox");
+      response.sendRedirect("/");
       return;
     }
     

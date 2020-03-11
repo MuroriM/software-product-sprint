@@ -42,19 +42,23 @@ function checkLogin() {
 
       console.log(logged);
 
-      if (logged[0] == 'true') {
+      if (logged.log == true) {
           document.getElementById("comment_form").style.display = "block";
+          var str2 = "<p>Logout <a href=\"" + logged.logLink + "\">here</a>.</p>";
       } else {          
           document.getElementById("comment_form").style.display = "none";
+          var str2 = "<p>Login <a href=\"" + logged.logLink + "\">here</a>.</p>";
       }
       getComments();
 
-      var z = makeElement(logged[1]);
-      var y = makeElement(logged[2]);
+      var str1 = "<p>Hello " + logged.userEmail + "!</p>";
+
+      var greeting = makeElement(str1);
+      var loglink = makeElement(str2);
 
       const logElement = document.getElementById('login');
-      logElement.append(z);
-      logElement.append(y);
+      logElement.append(greeting);
+      logElement.append(loglink);
 
   
   });
@@ -77,14 +81,14 @@ function getComments() {
 
     for (const idx in comments) {
         commentListElement.appendChild(
-        createListElement(comments[idx].commentText));
+        createListElement(comments[idx].commentText, comments[idx].email));
     }
   });
 }
 
 /** Creates an <li> element containing text. */
-function createListElement(text) {
+function createListElement(comment, user) {
   const liElement = document.createElement('li');
-  liElement.innerText = text;
+  liElement.innerText = comment + " by " + user;
   return liElement;
 }

@@ -23,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.sps.data.LoginData;
 
 @WebServlet("/login")
 public class UsersServlet extends HttpServlet {
@@ -40,14 +41,16 @@ public class UsersServlet extends HttpServlet {
     //   response.getWriter().println("<p>Hello " + userEmail + "!</p>");
     //   response.getWriter().println("<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
       
-      ArrayList<String> logged = new ArrayList<>();
+    //   ArrayList<String> logged = new ArrayList<>();
 
-      String str1 = "<p>Hello " + userEmail + "!</p>";
-      String str2 = "<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>";
+      LoginData logged = new LoginData(true, userEmail, logoutUrl);
 
-      logged.add("true");
-      logged.add(str1);
-      logged.add(str2);
+    //   String str1 = "<p>Hello " + userEmail + "!</p>";
+    //   String str2 = "<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>";
+
+    //   logged.add("true");
+    //   logged.add(str1);
+    //   logged.add(str2);
 
       // Send the JSON as the response
       response.setContentType("application/json;");
@@ -60,11 +63,13 @@ public class UsersServlet extends HttpServlet {
       //   response.getWriter().println("<p>Hello stranger.</p>");
       //   response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
 
-      ArrayList<String> logged = new ArrayList<>();
+      LoginData logged = new LoginData(false, "Stranger", loginUrl);
 
-      logged.add("false");
-      logged.add("<p>Hello stranger.</p>");
-      logged.add("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
+    //   ArrayList<String> logged = new ArrayList<>();
+
+    //   logged.add("false");
+    //   logged.add("<p>Hello stranger.</p>");
+    //   logged.add("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
 
       // Send the JSON as the response
       response.setContentType("application/json;");
